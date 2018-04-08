@@ -1,0 +1,28 @@
+{
+  "name": "koth",
+  "version": "1.0.0",
+  "description": "King of the Hill",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha index.test.js"
+  },
+  "keywords": [
+    "Ethereum",
+    "Solidity",
+    "JavaScript",
+    "Mocha",
+    "TDD",
+    "BlockChain",
+    "Block",
+    "Chain"
+  ],
+  "author": "monkJs",
+  "license": "ISC",
+  "dependencies": {
+    "ganache-cli": "^6.1.0",
+    "mocha": "^4.0.1",
+    "solc": "^0.4.21",
+    "truffle-hdwallet-provider": "0.0.3",
+    "web3": "^1.0.0-beta.33"
+  }
+}
