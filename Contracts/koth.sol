@@ -1,4 +1,4 @@
-pragma solidity 0.4.17;
+pragma solidity 0.4.21;
 
 
 contract KOTH {
@@ -35,6 +35,8 @@ contract KOTH {
 
     /* Functions */
     function KOTH() public {
+        owner = msg.sender;
+        approver = owner;
         king = owner;
     }
 
@@ -48,8 +50,8 @@ contract KOTH {
     }
 
     /* King's bid */
-    function setKingsBid() public bidIsHigh {
-        kingsBid = msg.value;
+    function setKingsBid() public bidIsHigh payable {
+        kingsBid += msg.value;
         kingsChest += msg.value;
         king = msg.sender;
     }
@@ -63,10 +65,6 @@ contract KOTH {
 
     /* King's message */
     function setKingsMessage(string newMessage) public isKing {
-        kingsMessage = newMessage;
-    }
-
-    function reassignKingsMessage(string newMessage) public isApprover {
         kingsMessage = newMessage;
     }
 

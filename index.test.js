@@ -3,7 +3,7 @@ const assert = require('assert');
 //const Web3 = require('web3');
 //const web3 = new Web3(ganache.provider());
 
-//const { interface, bytecode } = require('./compile');
+const { interface, bytecode } = require('./compile');
 
 let KOTH;
 let accounts = [0, 1];
@@ -21,13 +21,14 @@ beforeEach(async () => {
   // accounts = await web3.eth.getAccounts();
   owner = accounts[0];
   approver = accounts[1];
+  // TODO: king = accounts[2];
   // const data = bytecode;
   const from =  owner;
   const gas = '1000000';
   // const value = web3.utils.toWei('1', 'ether');
-  // KOTH = await new web3.eth.Contract(json.parse(interface))
-  //   .deploy({ data })
-  //   .send({ from, gas });
+  KOTH = await new web3.eth.Contract(json.parse(interface))
+     .deploy({ data })
+     .send({ from, gas });
 });
 
 describe('King of the Hill (Contract)', () => {
@@ -37,7 +38,7 @@ describe('King of the Hill (Contract)', () => {
     });
 
     it('Verify the contract owner', async () => {
-      // const _owner = await KOTH.methods.owner().call({ from });
+       const _owner = await KOTH.methods.owner().call({ from });
       assert.equal(_owner, owner);
     });
 
@@ -123,7 +124,7 @@ describe('King of the Hill (Contract)', () => {
 
     it('The King\'s starting message can be set by approver+', async () => {
       const newApproverMessage = "I have taken over as KING!!!1!"
-      // const kingsStartingMessage = await KOTH.methods.reassignKingsMessage(newApproverMessage).call({ from: approver });
+      // const kingsStartingMessage = await KOTH.methods.setKingsMessage(newApproverMessage).call({ from: approver });
       assert.equal(kingsStartingMessage, newApproverMessage);
     });
   });
